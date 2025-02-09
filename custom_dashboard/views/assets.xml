@@ -1,0 +1,17 @@
+<odoo>
+    <!--template id="custom_dashboard_assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/custom_dashboard/static/lib/chart.umd.js"></script>
+        <script type="text/javascript">
+            console.log("Chart.js script included in assets.xml");
+            setTimeout(() => {
+            if (window.Chart) {
+            console.log("Chart.js is available.");
+            } else {
+            console.error("Chart.js failed to load.");
+            }
+            }, 2000);
+        </script>
+      </xpath>
+    </template-->
+</odoo>

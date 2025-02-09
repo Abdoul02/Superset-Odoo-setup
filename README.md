@@ -115,6 +115,58 @@ except Exception as e:
         - `docker-compose-image-tag.yml`
         - Superset database connection URI
 
+4. **Embed Superset Dashboard in Odoo**
+   - This step assumes you have odoo running on your local machine, if not you can refer to https://github.com/Keling64/Yumi-Organics/blob/custom/README.md.
+   - Replace your custom_dashboard folder with the one from this module.
+
+### Create Embed Role in Superset
+
+1. Log in to Superset (http://localhost:8088)
+
+2. Go to Settings → Security → List Roles
+
+3. Click + Add a new role
+
+4. Set Role Name: embed_dashboard
+
+5. Set Permissions (Please see list of permissions under miscellaneous/images/permission.png)
+
+6. Click Save
+
+### Create Odoo Dashboard User
+
+1. Go to Settings → Security → List Users
+
+2. Click + Add a new user
+
+3. Set fields:
+   - Username: odoo_dashboard
+   - First Name: Guest
+   - Last Name: User
+   - Email: odoo@example.com
+   - Password: secure_password_here
+
+4. Under Roles, select embed_dashboard and Gamma
+
+5. Click Save
+
+### Generate Embedded Dashboard ID
+
+Go to dashboard and select a dashboard you want to embed on Odoo then follow the steps below: 
+
+ - In the top right corner near 'EDIT DASHBOARD' click on the three dots and click Embed Dashboard.
+ - In the pop-up, under allowed domains add 'http://localhost:8069' and click enable
+ - An Id will be generated.
+ - Go to your newly copied custom_dashboard and replace value of dashboardId in 'custom_dashboard/static/src/js/dashboard.js' with the generated Id.
+
+### Start Odoo with Your Custom Dashboard Module.
+
+In Odoo-community run the following:
+
+```bash
+python3 odoo-bin --addons-path=/path/to/OdooDev/odoo-community/addons,/path/to/OdooDev/custom_addons
+```
+
 ---
 
 ## Next Steps

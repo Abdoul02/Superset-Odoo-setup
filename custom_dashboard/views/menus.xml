@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_custom_dashboard_root" name="Custom Dashboard" web_icon="custom_dashboard,static/src/icons/chart.png" sequence="1"/>
+
+    <menuitem id="menu_custom_dashboard" name="Custom Dashboard" parent="menu_custom_dashboard_root"
+              action="action_custom_dashboard" sequence="1"/>
+</odoo>

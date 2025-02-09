@@ -1,0 +1,6 @@
+<record id="custom_dashboard_user_rule" model="ir.rule">
+    <field name="name">Custom Dashboard User Access</field>
+    <field name="model_id" ref="model_custom_dashboard"/>
+    <field name="domain_force">[]</field>
+    <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+</record>

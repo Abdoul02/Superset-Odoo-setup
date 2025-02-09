@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" name="Custom Dashboard" xml:space="preserve" inherit_id="web.assets_backend">
+    <t t-name="custom_dashboard.DashboardMain" owl="1">
+        <!-- Outer wrapper to force full-page scrolling -->
+        <div style="height: 100vh; overflow-y: auto;">
+            <!-- Main container with flexible layout -->
+            <div class="dashboard-container"
+                 style="padding: 20px; display: flex; flex-direction: column; gap: 20px;">
+                <h2 style="margin: 0;">Sales and Quantity Dashboard</h2>
+
+                <!-- Filter Row -->
+                <div class="filter-container" style="display: flex; flex-direction: row; gap: 10px; flex-shrink: 0;">
+                    <select id="countryFilter" style="flex: 1;" t-on-change="(ev) => onFilterChange('selectedCountry', ev.target.value)">
+                        <option value="">Country</option>
+                        <t t-foreach="state.countries" t-as="country" t-key="country.id">
+                            <option t-att-value="country.id">
+                                <t t-esc="country.name"/>
+                            </option>
+                        </t>
+                    </select>
+                    <select id="customerFilter" style="flex: 1;" t-on-change="(ev) => onFilterChange('selectedCustomer', ev.target.value)">
+                        <option value="">Customer</option>
+                        <t t-foreach="state.customers" t-as="customer" t-key="customer.id">
+                            <option t-att-value="customer.id">
+                                <t t-esc="customer.name"/>
+                            </option>
+                        </t>
+                    </select>
+                    <select id="productFilter" style="flex: 1;" t-on-change="(ev) => onFilterChange('selectedProduct', ev.target.value)">
+                        <option value="">Product</option>
+                        <t t-foreach="state.products" t-as="product" t-key="product.id">
+                            <option t-att-value="product.id">
+                                <t t-esc="product.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+
+                <!-- Chart with fixed height -->
+                <div class="chart-container" style="height: 400px; flex-shrink: 0;">
+                    <DashboardGraph/>
+                </div>
+
+                <!-- Superset Dashboard Container -->
+                <div class="superset-container" id="superset-container" className="superset-container"
+                     style="margin-top: 30; width: 100%; padding: 0; border: none;">
+                    <h3 style="margin: 0 0 10px 0;">Superset Dashboard</h3>
+                    <!-- Superset dashboard will load here -->
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="custom_dashboard.DashboardGraph" owl="1">
+        <div class="chart-container" style="width: 100%; height: 100%;">
+            <canvas id="salesChart"/>
+        </div>
+    </t>
+</templates>

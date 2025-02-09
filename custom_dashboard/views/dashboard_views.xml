@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_custom_dashboard_graph" model="ir.ui.view">
+        <field name="name">custom.dashboard.graph.view</field>
+        <field name="model">custom.dashboard</field>
+        <field name="arch" type="xml">
+            <graph string="Sales and Quantity Dashboard">
+                <field name="name"/>
+                <field name="total_sales" type="measure"/>
+                <field name="total_quantity" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_custom_dashboard_item" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">custom.dashboard</field>
+        <field name="view_mode">graph,form</field>
+    </record>
+</odoo>
